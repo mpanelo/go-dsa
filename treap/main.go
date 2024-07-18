@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 
 	"github.com/mpanelo/go-dsa/treap/internal/treap"
@@ -15,7 +16,21 @@ func main() {
 		t.Insert(randomWord())
 	}
 
-	t.InOrderPrint()
+	fmt.Println("Representation:")
+	fmt.Println(t.Repr(true))
+	fmt.Println()
+	result := t.Find("tree")
+
+	if result == nil {
+		fmt.Println("I did not find 'tree'!")
+	} else {
+		fmt.Print("Deleting 'tree' node\n\n")
+		t.Delete(result.Key)
+
+		fmt.Println("Representation:")
+		fmt.Println(t.Repr(true))
+		fmt.Println()
+	}
 }
 
 func randomWord() string {
